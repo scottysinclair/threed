@@ -234,6 +234,7 @@ class CompositeFaceSetCoards implements FaceSetCoards {
 
 }
 
+	
 
 /**
  * Performs calculations, transforms / translates to different
@@ -256,14 +257,14 @@ class CoardinateSystem {
 	public void transform(Vector coard, Vector angle) {
 	    //x and y points rotating around z axis
 		float az = toRadians(angle.getZ());
-		float pxx = ((float)Math.cos(az) * coard.getX();
+		float pxx = (float)Math.cos(az) * coard.getX();
 		float pxy = (float)Math.sin(az) * coard.getX();
 		
 		float pyx = (float)Math.sin(az) * coard.getY();
 		float pyy = (float)Math.cos(az) * coard.getY();
 		
 		coard.setX(pxx + pyx);
-		coard.setY(pxy - pyy);
+		coard.setY(pyy - pxy);
 	
 	    //x and z points rotating around y axis
 		float ay = toRadians(angle.getY());
@@ -274,7 +275,7 @@ class CoardinateSystem {
 		float pzz = (float)Math.cos(ay) * coard.getZ();
 	
 		coard.setX(pxx + pzx);
-		coard.setZ(pxz - pzz);
+		coard.setZ(pzz - pxz);
 		
 		//z and y points rotating around x axis
 		float ax = toRadians(angle.getX());
@@ -285,7 +286,7 @@ class CoardinateSystem {
 		pyy = (float)Math.cos(ax) * coard.getY();
 		
 		coard.setZ(pzz + pyz);
-		coard.setY(pzy - pyy);
+		coard.setY(pyy - pzy);
 	}
 	
 	public void translate(List<Vector> coards, Vector pos) {
