@@ -68,6 +68,11 @@ class Vector {
     public void setZ(float z) {
         this.z = z;
     }
+
+    @Override
+    public String toString() {
+        return "Vector [x=" + x + ", y=" + y + ", z=" + z + "]";
+    }
 }
 
 /**
@@ -477,11 +482,11 @@ class TDView extends CoardinateSystem {
             Vector a = face.getCoard(i);
             Vector b = face.getCoard((i+1) % n);
             if (a.getZ() > 0 && b.getZ() > 0) {
-                System.out.println(
-                            Math.round(a.getX()) + " " +
-                            Math.round(a.getY()) + " " +
-                            Math.round(b.getX()) + " " +
-                            Math.round(b.getY()));
+//                System.out.println(
+//                            Math.round(a.getX()) + " " +
+//                            Math.round(a.getY()) + " " +
+//                            Math.round(b.getX()) + " " +
+//                            Math.round(b.getY()));
                 g.drawLine(
                         Math.round(a.getX()),
                         Math.round(a.getY()),
@@ -727,28 +732,32 @@ public class Threed extends ModelFactory {
                 mymouse.toggleMotion();
             }
             else if (e.getKeyCode() == 40) {
-                Vector p = new Vector(0f, 0f, 1f);
-                //cs.transform(p, view.getAngle());
+                Vector p = new Vector(0, 0, 1f);
+                cs.transform(p, view.getAngle());
+                System.out.println(p);
                 view.getPos().setZ(view.getPos().getZ() + (40 * p.getZ()));
-                view.getPos().setX(view.getPos().getX() + (40 * p.getX()));
+                //view.getPos().setY(view.getPos().getY() + (40 * p.getY()));
+                view.getPos().setX(view.getPos().getX() - (40 * p.getX()));
             }
             else if (e.getKeyCode() == 38) {
-                Vector p = new Vector(0f, 0f, 1f);
+                Vector p = new Vector(0, 0, -1f);
                 cs.transform(p, view.getAngle());
-                view.getPos().setZ(view.getPos().getZ() - (40 * p.getZ()));
+                System.out.println(p);
+                view.getPos().setZ(view.getPos().getZ() + (40 * p.getZ()));
+                //view.getPos().setY(view.getPos().getY() + (40 * p.getY()));
                 view.getPos().setX(view.getPos().getX() - (40 * p.getX()));
             }
             else if (e.getKeyCode() == 39) {
                 Vector p = new Vector(1f, 0f, 0f);
                 cs.transform(p, view.getAngle());
-                view.getPos().setZ(view.getPos().getZ() + (40 * p.getZ()));
+                view.getPos().setZ(view.getPos().getZ() - (40 * p.getZ()));
                 view.getPos().setX(view.getPos().getX() + (40 * p.getX()));
             }
             else if (e.getKeyCode() == 37) {
-                Vector p = new Vector(1f, 0f, 0f);
+                Vector p = new Vector(-1f, 0f, 0f);
                 cs.transform(p, view.getAngle());
                 view.getPos().setZ(view.getPos().getZ() - (40 * p.getZ()));
-                view.getPos().setX(view.getPos().getX() - (40 * p.getX()));
+                view.getPos().setX(view.getPos().getX() + (40 * p.getX()));
             }
         }
     }
