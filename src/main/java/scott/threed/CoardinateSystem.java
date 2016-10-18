@@ -16,7 +16,7 @@ class CoardinateSystem {
         }
     }
 
-    private float toRadians(float angle) {
+    public static float toRadians(float angle) {
         return 0.0174532925F * angle;
     }
 

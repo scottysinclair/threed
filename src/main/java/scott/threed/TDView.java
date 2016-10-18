@@ -50,6 +50,7 @@ class TDView extends CoardinateSystem {
 
     public void render(Graphics g) {
         FaceSetCoards faceSet = getFaceSet();
+        double pixelRatio = ((float)screenWidth / screenHeight);
         for (Vector coard: faceSet.getCoards()) {
             double x = coard.getX();
             double y = coard.getY();
@@ -59,7 +60,8 @@ class TDView extends CoardinateSystem {
             double ratioX = viewHalfLength / x; //ratio of point x coard to edge of view
             double ratioY = viewHalfLength / y; //ratio of point y coard to edge of view
 
-            x = (screenWidth / ratioX);
+
+            x = (screenWidth / ratioX) / pixelRatio;
             y = (screenHeight / ratioY);
 
             x += (screenWidth / 2);
